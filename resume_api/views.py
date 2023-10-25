@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from .models import Comments
-from .serializers import CommentSerializer
+from .models import Comments, Projects, Experience
+from .serializers import CommentSerializer, ProjectsSerializer, ExperienceSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -21,3 +21,19 @@ def comments_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response({"error": "Invalid Parameters"}, status=status.HTTP_400_BAD_REQUEST)
+        
+@api_view(['GET'])
+def projects_list(request):
+
+    if request.method == 'GET':
+        projects = Projects.objects.all()
+        serializer = ProjectsSerializer(projects, many=True)
+        return JsonResponse({'projects': serializer.data})
+    
+@api_view(['GET'])
+def experience_list(request):
+
+    if request.method == 'GET':
+        projects = Experience.objects.all()
+        serializer = ExperienceSerializer(projects, many=True)
+        return JsonResponse({'experience': serializer.data})
