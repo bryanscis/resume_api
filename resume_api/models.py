@@ -13,13 +13,24 @@ class Comments(models.Model):
     
 class Projects(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=1000)
+    description = ArrayField(models.CharField(max_length=500))
+    stack = ArrayField(models.CharField(max_length=70))
 
     def __str__(self):
-        return f'{self.name}: {self.description}'
+        return f'{self.name}: {self.description} with stack: {self.stack}'
     
 class Experience(models.Model):
     title = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
     time_at_company = models.CharField(max_length=100)
     responsibilities = ArrayField(models.CharField(max_length=500))
+
+    def __str__(self):
+        return f'I worked at {self.company} as a {self.title} from {self.time_at_company}. My responsibilities were {self.responsibilities}.'
+    
+class Contact(models.Model):
+    platform = models.CharField(max_length=100)
+    information = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'My {self.platform} is {self.information}'

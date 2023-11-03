@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from .models import Comments, Projects, Experience
-from .serializers import CommentSerializer, ProjectsSerializer, ExperienceSerializer
+from .models import Comments, Projects, Experience, Contact
+from .serializers import CommentSerializer, ProjectsSerializer, ExperienceSerializer, ContactSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -37,3 +37,11 @@ def experience_list(request):
         projects = Experience.objects.all()
         serializer = ExperienceSerializer(projects, many=True)
         return JsonResponse({'experience': serializer.data})
+    
+@api_view(['GET'])
+def contact_list(request):
+
+    if request.method == 'GET':
+        contact = Contact.objects.all()
+        serializer = ContactSerializer(contact, many=True)
+        return JsonResponse({'contact': serializer.data})

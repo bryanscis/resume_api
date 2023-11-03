@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Comments, Projects, Experience
+from .models import Comments, Projects, Experience, Contact
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,9 +9,14 @@ class CommentSerializer(serializers.ModelSerializer):
 class ProjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
-        fields = ['id', 'name', 'description']
+        fields = ['id', 'name', 'description', 'stack']
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
         fields = ['title', 'company', 'time_at_company', 'responsibilities']
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ['platform', 'information']
