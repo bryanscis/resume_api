@@ -34,3 +34,10 @@ class Contact(models.Model):
 
     def __str__(self):
         return f'My {self.platform} is {self.information}'
+    
+class Route(models.Model):
+    route = models.CharField(max_length=100)
+    information = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.route} : {self.information}'

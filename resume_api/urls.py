@@ -23,5 +23,7 @@ urlpatterns = [
     path("comments/", views.comments_list),
     path("projects/", views.projects_list),
     path("experience/", views.experience_list),
-    path("contact/", views.contact_list)
+    path("contact/", views.contact_list),
+    path("routes/", views.routes_list),
+    path("", views.homepage),
 ]
