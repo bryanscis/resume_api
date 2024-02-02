@@ -49,7 +49,7 @@ def contact_list(request):
 @api_view(['GET'])
 def homepage(request):
     if request.method == 'GET':
-        return JsonResponse({'Check out my resume!': 'Go to /routes to see all possible API routes.'})
+        return JsonResponse({'Check out my resume!': 'Add /routes to see all possible API routes.'})
     
 @api_view(['GET'])
 def routes_list(request):

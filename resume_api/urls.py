@@ -15,15 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.shortcuts import redirect
 from resume_api import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("comments/", views.comments_list),
-    path("projects/", views.projects_list),
-    path("experience/", views.experience_list),
-    path("contact/", views.contact_list),
-    path("routes/", views.routes_list),
-    path("", views.homepage),
+    path('', lambda request: redirect('api/', permanent=False)),
+    path('api/', include([
+        path("comments/", views.comments_list),
+        path("projects/", views.projects_list),
+        path("experience/", views.experience_list),
+        path("contact/", views.contact_list),
+        path("routes/", views.routes_list),
+        path("", views.homepage),
+    ])),
 ]
